@@ -1,0 +1,53 @@
+﻿.doorShutter {
+    overflow:hidden;
+    position: relative;
+    z-index: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    float:left;
+    text-align: center;
+}
+
+.DoorShutterContainer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    border-radius: 500px;
+    z-index: 25;
+}
+
+.DoorShutterContent {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+
+.DoorShutterPassive {
+    position: absolute;
+    top: -100%;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background-color: #BCC4F5;
+    -webkit-transition: all 0.4s linear;  
+    -moz-transition: all 0.4s linear;  
+    -o-transition: all 0.4s linear;  
+    transition: all 0.4s linear; 
+    z-index: 25;
+    overflow:hidden;
+}
+
+.DoorShutterActive {
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0;
+    right: 0;
+    z-index: 25;
+}

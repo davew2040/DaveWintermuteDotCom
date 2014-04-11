@@ -1,0 +1,96 @@
+﻿
+#galleryView .galleryTable {
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#galleryView .galleryTable .galleryItemHolder {
+    text-align: center;
+    border-radius: 6px;
+    width: 140px;
+    height: 110px;
+    overflow: hidden;
+    position: relative;
+    display: table;
+}
+
+#deleteClickerSource {
+    display: none;
+}
+
+.manageGalleryHover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.00);
+    z-index: 500;
+    -webkit-transition: all 0.3s ease;  
+    -moz-transition: all 0.3s ease;  
+    -o-transition: all 0.3s ease;  
+    transition: all 0.3s ease; 
+}
+
+.hoverOn {
+    background: rgba(58, 68, 255, 0.75);
+}
+
+.deleteClicker {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.deleteClickerIcon {
+    position: absolute;
+    right: 0px;
+    left: auto;
+    top: auto;
+    bottom: auto;
+}
+
+#galleryView .galleryTable .galleryItemInnerContainer {
+    display:table-cell;
+    vertical-align: middle;
+}
+
+#galleryView .galleryTable img {
+    border-radius: 5px;
+    margin-top: 3px;
+}
+
+#galleryView .galleryTable .evenCell .galleryItemHolder {
+    background-color: #ffeacd;
+}
+
+#galleryView .galleryTable .oddCell .galleryItemHolder {
+    background-color: #cecaff;
+}
+
+.galleryHeader {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 25px;
+    background-color: #BCC4F5;
+    border-radius: 10px;
+}
+
+.galleryTitle {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.galleryDescription {
+    margin-left: 10px;
+    margin-top: 12px;
+    font-size: 16px;
+}

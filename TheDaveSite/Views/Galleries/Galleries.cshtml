@@ -1,0 +1,56 @@
+﻿
+@model List<DataAccess.Models.Gallery>
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/GalleriesScript.js")
+
+@Styles.Render("~/Content/Pages/Galleries/Galleries.css")
+
+@{
+    int galleryCounter = 1;
+}
+
+<div class="galleriesPageContent">
+
+    @if (User.IsInRole("Admin"))
+    {
+        @: <a href="@Url.Action("CreateGallery")">[Create Gallery]</a><br /><br />
+    }
+
+    <div class="bubbleBlock">
+        <div class="bubbleBlockHeader">Galleries</div>
+        <div class="bubbleBlockContent">
+            <div class="galleryList">
+                @foreach (var gallery in Model.OrderByDescending(x => x.CreatedDate))
+                {
+                    if (!User.IsInRole("Admin") && !gallery.IsPublic)
+                    {
+                        continue;
+                    }
+                
+                    <div class="gallerySummary @(galleryCounter++ % 2 == 0 ? "even" : "odd")">
+                        <div class="galleryTitle">
+                            <a href="@Url.Action("ViewGallery", new { id = gallery.Id} )" class="viewGalleryLink">@gallery.Title</a>
+                        </div>
+                        <div class="galleryOrigin">
+                            By <b>@gallery.Author.FirstName</b> on @(gallery.CreatedDate.ToString("f")). 
+                        </div>
+                        <div class="galleryDescription">
+                            @gallery.Description 
+                        </div>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="adminFunctions">
+                                @Html.ActionLink("[View]", "ViewGallery", new { id = gallery.Id} )
+                                @Html.ActionLink("[Edit]", "EditGallery", new { id = gallery.Id} )
+                                @Html.ActionLink("[Manage]", "ManageGallery", new { id = gallery.Id} )
+                                <a class="btnGalleryDelete" data-id="@gallery.Id">[Delete]</a>
+                                @Html.ActionLink("[Add Images]", "AddImagesToGallery", new { galleryId = gallery.Id} )
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

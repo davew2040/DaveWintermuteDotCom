@@ -1,0 +1,50 @@
+﻿@model TheDaveSite.ViewModels.Galleries.GalleryImageView_ViewModel
+
+<div class="galleryImagePanel_ContentInnerPanel">
+    <div class="galleryImagePanel_ImageHolderHolderHolder">
+        <div class="galleryImagePanel_ImageHolderHolder">
+            <div class="galleryImagePanel_ImageHolder">
+                <a href="@Url.Action("GetFullsizeDatabaseImage", "DatabaseImage", new { id = Model.GalleryImage.ImageId })" target="_blank">
+                    <img src="@Url.Action("GetViewerDatabaseImage", "DatabaseImage", new { id = Model.GalleryImage.ImageId })" 
+                        width="@Model.GalleryImage.Image.ViewerImage.ActualWidth"
+                        height="@Model.GalleryImage.Image.ViewerImage.ActualHeight" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="galleryImagePanel_Comments">
+        <div class="imageActionToolbar">
+            <div id="addNewCommentButton">Add New Comment</div>
+            <div id="copyLinkButton" class="navButton">Copy Link</div>
+        </div>
+
+        <div id="commenter">
+            <div class="createNewCommentContainer">
+                @using (Html.BeginForm("AddPhotoComment", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                    @Html.Hidden("imageId", Model.GalleryImage.Id)
+                    
+                    if (!WebSecurity.IsAuthenticated)
+                    {
+                        @: Your Name:<br />
+                        @Html.TextBox("AuthorName", null, new { @class = "newCommentAuthorName" })<br />
+                    }
+                    
+                    @: Your comment: <br />
+                    @Html.TextArea("commentBody", new { @class = "newCommentTextArea"})
+
+                    <div class="posterButtonsContainer">
+                        <button id="createNewComment">Post</button> 
+                        <button id="cancelNewComment">Cancel</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <div id="commentsDiv">
+            @Html.Partial("~/Views/Galleries/_GalleryImageComments.cshtml", Model.GalleryImage)
+        </div>
+    </div>
+</div>

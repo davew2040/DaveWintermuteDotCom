@@ -1,0 +1,52 @@
+﻿@model TheDaveSite.Models.RegisterModel
+
+
+<div class="bubbleBlock">
+    <div class="bubbleBlockHeader">Register</div>
+    <div class="bubbleBlockContent">
+        <div class="simpleForm">
+            <fieldset>
+                <legend>Registration Fields</legend>
+                @using (Html.BeginForm()) {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                        <ol>
+                            <li>
+                                @Html.AriaLabelFor(m => m.UserName)
+                                @Html.AriaTextBoxFor(m => m.UserName)
+                            </li>
+                            <li>
+                                @Html.AriaLabelFor(m => m.Email)
+                                @Html.TextBoxFor(m => m.Email)
+                            </li>
+                            <li>
+                                @Html.AriaLabelFor(m => m.Password)
+                                @Html.PasswordFor(m => m.Password)
+                            </li>
+                            <li>
+                                @Html.AriaLabelFor(m => m.ConfirmPassword)
+                                @Html.PasswordFor(m => m.ConfirmPassword)
+                            </li>
+                            <li>
+                                @Html.AriaLabelFor(m => m.FirstName)
+                                @Html.TextBoxFor(m => m.FirstName)
+                            </li>
+                            <li>
+                                @Html.AriaLabelFor(m => m.MiddleName)
+                                @Html.TextBoxFor(m => m.MiddleName)
+                            </li>
+                            <li>
+                                @Html.AriaLabelFor(m => m.LastName)
+                                @Html.TextBoxFor(m => m.LastName)
+                            </li>
+                        </ol>
+                        <input type="submit" value="Register" />
+                    
+                    <div style="margin-top:15px;margin-left: 25px;">
+                        <span class='fieldRequired'>*</span> indicates a required field.
+                    </div>
+                }
+            </fieldset>
+        </div>
+    </div>
+</div>

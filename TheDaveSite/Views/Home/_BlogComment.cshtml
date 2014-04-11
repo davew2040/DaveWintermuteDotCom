@@ -1,0 +1,32 @@
+﻿@model TheDaveSite.ViewModels.Home.BlogCommentViewModel
+
+@using TheDaveSite.Code;
+@{
+    string anonymousAuthorName = string.Empty;
+}
+
+@functions{
+    private static string GetShortenedComment(string comment){
+        const int MAX_LENGTH = 50;
+        if (comment.Length < MAX_LENGTH)
+            return comment;
+        else
+            return comment.Substring(0, MAX_LENGTH) + "..."; 
+    }
+}
+
+
+<div class='subComment' style='padding-left:@((Model.Level+1)*15)px;' data-postId="@Model.Comment.RootId" data-commentId="@Model.Comment.Id">
+    @if (Model.Comment.Author != null)
+    {
+        <div class='subCommentInfo'>By @Model.Comment.Author.UserName on @Model.Comment.PostDate.ToString("D").</div>
+    }
+    else{
+        anonymousAuthorName = string.IsNullOrEmpty(Model.Comment.AnonymousAuthorName) ? "Anonymous Commenter" : Model.Comment.AnonymousAuthorName;
+        
+        <div class='subCommentInfo'>By @anonymousAuthorName on @Model.Comment.PostDate.ToString("D").</div>
+    }
+    <div class='shortCommentBody'>@GetShortenedComment(Model.Comment.Content) <span><a class="commentReadMore">[read more / reply]</a></span></div>
+    <div class='longCommentBody'>@Html.Raw(CommentsHelpers.formatPost(Model.Comment.Content))</div>
+    <div class="commentResponseTarget"></div>
+</div>

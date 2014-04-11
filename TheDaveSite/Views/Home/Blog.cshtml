@@ -1,0 +1,80 @@
+﻿@model TheDaveSite.ViewModels.Home.BlogViewModel
+
+@using DataAccess.Models;
+@using TheDaveSite.ViewModels.Home;
+@using TheDaveSite.Code;
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/Blog.js")
+@Styles.Render("~/Content/Pages/Blog.css")
+
+@Scripts.Render("~/Scripts/DaveScript/QuickGallery.js")
+@Styles.Render("~/Content/QuickGallery.css")
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/GalleryImageViewer.js")
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/GalleryImageView.js")
+@Styles.Render("~/Content/Pages/Galleries/GalleryImageView.css")
+
+<script type="text/javascript">
+    var pageData = BlogScript.getPageData();
+    pageData.PageNumber = @(Model.PageNumber);
+    pageData.NumberOfPages = @(Model.NumberOfPages);
+    pageData.PostsPerPage = @(Model.PostsPerPage);
+    pageData.TotalPosts = @(Model.TotalPostNumber);
+</script>
+
+@functions
+{
+    private string createCommentsRoot(BlogPost post)
+    {
+        var builder = new System.Text.StringBuilder();   
+        
+        foreach (var comment in post.Comments.Where(x => x.ParentId == null))
+        {
+            builder.Append(createComments(comment, post.Comments, 0));   
+        }
+
+        return builder.ToString();
+    }
+    
+    private string createComments(BlogComment currentComment, ICollection<BlogComment> allComments, int level)
+    {
+        var builder = new System.Text.StringBuilder();
+
+        builder.Append(Html.Partial("~/Views/Home/_BlogComment.cshtml", new BlogCommentViewModel()
+            {
+                AllComments = allComments,
+                Comment = currentComment,
+                Level = level
+            }));
+        
+        foreach (var subComment in allComments.Where(x => x.ParentId == currentComment.Id))
+        {
+            builder.Append(createComments(subComment, allComments, level+1));
+        }
+       
+        return builder.ToString();
+    }
+}
+
+<div id="mainstuff">
+        @Html.Partial("~/Views/Controls/QuickGallery.cshtml")
+
+    <div id="commenterForm" style="display:none;">
+        @Html.Partial("~/Views/Home/_NewBlogComment.cshtml", new TheDaveSite.ViewModels.Home.NewBlogComment())
+    </div>
+
+    @if (User.IsInRole("Admin")){
+        <div class="adminToolbar">@Html.ActionLink("New Post", "AuthorNewBlogPost")</div>
+    }
+
+    <div class="blogHeader">The Blog.</div>
+
+    <div class="boardToolbar">
+        <div id="postCounter"></div>
+    </div>
+
+    @foreach (var post in Model.RecentPosts.OrderByDescending(x => x.PostDate))
+    {
+        @Html.Partial("_BlogPost", post);
+    }
+</div>

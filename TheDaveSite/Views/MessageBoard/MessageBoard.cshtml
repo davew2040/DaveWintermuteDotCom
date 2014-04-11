@@ -1,0 +1,87 @@
+﻿@model TheDaveSite.ViewModels.MessageBoard.MessageBoardViewModel
+
+@using DataAccess.Models
+@using TheDaveSite.ViewModels.MessageBoard;
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/MessageBoard.js")
+@Styles.Render("~/Content/Pages/MessageBoard.css")
+
+<script type="text/javascript">
+    var CURRENT_PAGE = "MessageBoard";
+    var PageData = new MessageBoardData();
+    PageData.PostCount = @(Model.PostCount);
+    PageData.MessageBoardId = @(Model.CurrentMessageBoard.Id);
+</script>
+
+@functions
+{
+    private string createCommentsRoot(MessageBoardPost post)
+    {
+        var builder = new System.Text.StringBuilder();   
+        
+        foreach (var comment in post.Comments.Where(x => x.ParentCommentId == null))
+        {
+            builder.Append(createComments(comment, post.Comments, 0));   
+        }
+
+        return builder.ToString();
+    }
+    
+    private string createComments(MessageBoardPostComment currentComment, ICollection<MessageBoardPostComment> allComments, int level)
+    {
+        var builder = new System.Text.StringBuilder();
+
+        builder.Append(Html.Partial("~/Views/MessageBoard/_MessageBoardPostComment.cshtml", new MessageBoardPostCommentViewModel()
+            {
+                AllComments = allComments,
+                Comment = currentComment,
+                Level = level
+            }));
+        
+        foreach (var subComment in allComments.Where(x => x.ParentCommentId == currentComment.Id))
+        {
+            builder.Append(createComments(subComment, allComments, level+1));
+        }
+       
+        return builder.ToString();
+    }
+}
+
+<div id="commenterForm" style="display:none;">
+    @Html.Partial("~/Views/MessageBoard/_NewMessageBoardComment.cshtml", 
+        new TheDaveSite.ViewModels.MessageBoard.NewMessageBoardComment()
+        {
+            BoardId = Model.CurrentMessageBoard.Id
+        })
+</div>
+
+<div id="posterForm" style="display:none;">
+    @Html.Partial("~/Views/MessageBoard/_NewMessageBoardPost.cshtml", 
+        new TheDaveSite.ViewModels.MessageBoard.NewMessageBoardPost()
+        {
+            BoardId = Model.CurrentMessageBoard.Id
+        })
+</div>
+
+<div class="navBack">
+@Html.ActionLink("Back to Messageboard List", "Index")
+</div>
+
+<div class="messageBoardHeader">
+    <div class="currentMessageBoardTitle">@Model.CurrentMessageBoard.Name</div>
+    <div class="currentMessageBoardDescription">@Model.CurrentMessageBoard.Description</div>
+</div>
+
+<div class="boardToolbar">
+    <a href="javascript:void(0)"><div class="newPostButtonDiv">Make New Post</div></a>
+    <div id="postCounter"></div>
+</div>
+
+<div id="newPostTarget"></div>
+
+<div id="messageBoardContent"></div>
+
+@if (Model.PostCount == 0)
+{
+    <div class="noBoardsNotice">This message board has no posts! Maybe you'd like to create one??</div>
+}

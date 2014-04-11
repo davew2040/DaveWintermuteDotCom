@@ -1,0 +1,74 @@
+﻿#invisible_image_holder {
+    position: fixed;
+    left: 150%;
+    top: 0px;
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}
+
+#dragdroptarget {
+    width: 250px;
+    height: 150px;
+}
+
+.dragdroptarget_passive {
+    background-color: #bdc1ff;
+    font-weight: normal;
+    position: relative;
+    border-width: 1px;
+    border-color: #808080;
+    border-style: solid;
+}
+
+.dragdroptarget_active {
+    background-color: #9298ff;
+    position: relative;
+    font-weight: bold;
+    border-width: 2px;
+    border-color: #000000;
+    border-style: solid;
+}
+
+#dragdroptarget_actual {
+    background-color: transparent;
+    position:absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index:100;
+}
+
+#dragdroptarget_message {
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -75px;
+    margin-top: -15px;
+    height: 30px;
+    width: 150px;
+    text-align: center;
+}
+
+#error_messages {
+    display:none;
+    color: #f00;
+}
+
+#error_message_list {
+}
+
+#btn_submit_images {
+    margin-top:20px;
+}
+
+#image_output {
+    margin: 5px;
+}
+
+#image_output img {
+    border-radius: 5px;
+    margin: 3px;
+}
+ 

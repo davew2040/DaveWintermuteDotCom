@@ -1,0 +1,44 @@
+﻿@model TheDaveSite.ViewModels.Home.AddEditBlogPostViewModel
+
+@Styles.Render("~/Content/Pages/Blog.css")
+
+@Scripts.Render("~/Scripts/DaveScript/Gallery.js")
+@Styles.Render("~/Content/Gallery.css")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var galleries = $(".daveGallery");
+        var template = $(".galleryTemplate");
+
+        for (var i = 0; i < galleries.length; i++) {
+            var galleryTarget = galleries[i];
+            var newGallery = new DaveGallery(galleryTarget, template);
+        }
+    });
+</script>
+
+<h1>Preview:</h1>
+
+@Html.Partial("~/Views/Controls/QuickGallery.cshtml")
+
+@Html.Partial("_BlogPost", Model.PreviewBlogPost)
+
+@using (Html.BeginForm("PostNewBlogPost", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(a => a.Content)
+    @Html.HiddenFor(a => a.Title)
+    @Html.HiddenFor(a => a.LinkedGalleryId)
+    @Html.HiddenFor(a => a.ImageLinks)
+    
+    <button type="submit" style="margin-right:auto;margin-left:auto;">Post</button>
+}
+
+@using (Html.BeginForm("AuthorNewBlogPost", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(a => a.Content)
+    @Html.HiddenFor(a => a.Title)
+    @Html.HiddenFor(a => a.LinkedGalleryId)
+    @Html.HiddenFor(a => a.ImageLinks)
+    
+    <button type="submit" style="margin-right:auto;margin-left:auto;">Edit</button>
+}

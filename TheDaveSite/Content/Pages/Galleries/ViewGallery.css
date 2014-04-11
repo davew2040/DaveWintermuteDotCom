@@ -1,0 +1,100 @@
+﻿
+
+#galleryView .galleryTable {
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.galleryItemHolder {
+    text-align: center;
+    border-radius: 6px;
+    width: 140px;
+    height: 110px;
+    overflow: hidden;
+    position: relative;
+    display: table;
+}
+
+.galleryItemInnerContainer {
+    display:table-cell;
+    vertical-align: middle;
+}
+
+.galleryTable td {
+    padding: 6px 2px;
+}
+
+.galleryTable img {
+    border-radius: 5px;
+    margin-top: 3px;
+}
+
+.galleryItemHolder {
+    background-color: #ada49a;
+}
+
+.galleryItemHolder {
+    background-color: #ada49a;
+}
+
+.gallerySummary .bubbleBlock {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.gallerySummary .bubbleBlockHeader {
+    font-size: 16px;
+}
+
+.gallerySummary .bubbleBlockContent {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.gallerySummary .galleryInfo {
+    margin-left: 15px;
+    font-size: 16px;
+}
+
+.gallerySummary .bubbleBlockContent {
+    background-color: #E3E0CC;
+}
+
+.gallerySummary .galleryOrigin {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.galleryHeader {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 25px;
+    background-color: #BCC4F5;
+    border-radius: 10px;
+}
+
+.galleryTitle {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.galleryDescription {
+    margin-top: 8px;
+}
+
+.navBack {
+    text-align: right;
+    margin-bottom: 10px;
+    color:#01006b;
+}
+
+.navBack a {
+    color:#01006b;
+    font-size: 12px;
+}

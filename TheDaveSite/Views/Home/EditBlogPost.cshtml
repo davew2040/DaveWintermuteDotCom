@@ -1,0 +1,40 @@
+﻿@model TheDaveSite.ViewModels.Home.AddEditBlogPostViewModel
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/AuthorNewBlogPost.js")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        AuthorNewBlogPostScript.initialize( @(Html.Raw(Json.Encode(Model.ImageLinks))) );
+    });
+</script>
+
+<h2>New Post:</h2>
+
+@using(Html.BeginForm("EditBlogPost", "Home", FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(x => x.ImageLinks)
+    @Html.HiddenFor(x => x.Id)
+
+@: Title:<br />
+    @Html.TextBoxFor(x => x.Title, new { @style = "margin-left: 20px; width: 500px;"})<br />
+    <br />
+@: Content: <br />
+    @Html.TextAreaFor(x => x.Content, new { @style = "margin-left: 20px; width: 500px; height:250px" })
+    <br />
+    <br />
+    @: Gallery:<br />
+    @Html.DropDownListFor(x => x.LinkedGalleryId, new SelectList(Model.Galleries, "Id", "Title")) <br />
+    <br />
+    @:Links:<br/>
+    <button type="button" id="addLink" style="margin-bottom:10px;">Add Link</button>
+    <div id="linkTemplate" style="display:none">
+        <div class="link">
+            <input type="text" style="width: 250px" /><a href="javascript:void(0)" class="linkRemover">[Remove]</a>
+        </div>
+    </div>
+    <div id="links">
+    </div>
+    <button type="button" id="submitter" style="margin-right:auto;margin-left:auto;margin-top: 25px;">Save</button>
+}

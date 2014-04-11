@@ -1,0 +1,15 @@
+﻿@model TheDaveSite.ViewModels.MessageBoard.NewMessageBoardPost
+
+<div class="newPostContainer">
+    @using (Html.BeginForm("AddNewMessageBoardPost", "Home"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        @Html.HiddenFor(x => x.BoardId)
+        @Html.TextBoxFor(x => x.Title, new { @class = "newPostTitle"})
+        @Html.TextAreaFor(x => x.Content, new { @class = "newPostTextArea"})
+
+        <button id="createNewComment">Post</button> 
+        <button id="cancelNewComment">Cancel</button>
+    }
+</div>

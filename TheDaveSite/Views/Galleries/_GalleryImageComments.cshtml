@@ -1,0 +1,38 @@
+﻿@model DataAccess.Models.GalleryImage
+
+<h2>Comments:</h2>
+
+@{
+    string anonymousAuthorName = string.Empty;
+}
+
+@if (!Model.Comments.Any())
+{
+    @: No comments yet.
+}
+else
+{
+    foreach (var comment in Model.Comments)
+    {
+        <div class="imageComment" data-commentId="@comment.Id">
+            <div class="imageCommentHeader">
+                @if (comment.Author != null)
+                {
+                    @: By @comment.Author.FirstName on @comment.CommentDate:
+                }
+                else
+                {
+                    anonymousAuthorName = string.IsNullOrEmpty(comment.AnonymousAuthorName) ? "Anonymous Commenter" : comment.AnonymousAuthorName;
+        
+                    @: By @anonymousAuthorName on @comment.CommentDate:
+                }
+            </div>
+            <div class="imageCommentBody">
+                @comment.CommentBody
+            </div>
+            @if (User.IsInRole("Admin")){
+                <div class="adminCommands"><span><a class="btn_delete">[Delete]</a></span></div>
+            }
+        </div>
+    }
+}

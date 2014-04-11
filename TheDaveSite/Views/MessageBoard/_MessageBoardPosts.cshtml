@@ -1,0 +1,74 @@
+﻿@model TheDaveSite.ViewModels.MessageBoard.MessageBoardPostsViewModel
+
+@using DataAccess.Models
+@using TheDaveSite.ViewModels.MessageBoard
+
+@functions
+{
+    private string createCommentsRoot(MessageBoardPost post)
+    {
+        var builder = new System.Text.StringBuilder();   
+        
+        foreach (var comment in post.Comments.Where(x => x.ParentCommentId == null))
+        {
+            builder.Append(createComments(comment, post.Comments, 0));   
+        }
+
+        return builder.ToString();
+    }
+    
+    private string createComments(MessageBoardPostComment currentComment, ICollection<MessageBoardPostComment> allComments, int level)
+    {
+        var builder = new System.Text.StringBuilder();
+
+        builder.Append(Html.Partial("~/Views/MessageBoard/_MessageBoardPostComment.cshtml", new MessageBoardPostCommentViewModel()
+            {
+                AllComments = allComments,
+                Comment = currentComment,
+                Level = level
+            }));
+        
+        foreach (var subComment in allComments.Where(x => x.ParentCommentId == currentComment.Id))
+        {
+            builder.Append(createComments(subComment, allComments, level+1));
+        }
+       
+        return builder.ToString();
+    }
+    
+    private string getCommentsHeaderText(MessageBoardPost post)
+    {
+        if (post.Comments.Any())
+        {
+            return "" + post.Comments.Count + " comments:"; 
+        }
+        else
+        {
+            return "No comments yet.";
+        }
+    }
+}
+
+@foreach (var post in Model.CurrentPosts.OrderByDescending(x => x.PostDate))
+{
+    <div class="post">
+        <div class="messageBoardPostHeader">
+            <div class="messageBoardPostTitle">@post.Title </div>
+            <div class="replyButton postReplyButton" data-postId="@post.Id" data-commentId="0">Reply</div>
+            @if (post.Author != null)
+            {
+                <div class="messageBoardPostInfo">By <span style="font-weight: bold">@post.Author.FirstName</span>, on <span class="postDate">@post.PostDate.ToString("D")</span></div>
+            }
+            else
+            {
+                <div class="messageBoardPostInfo">By Anonymous Poster, on <span class="postDate">@post.PostDate.ToString("D")</span></div>
+            }
+        </div>
+        <div class="messageBoardPostContent">@Html.Raw(TheDaveSite.Code.CommentsHelpers.formatPost(post.Content))</div>
+        <div class="postResponseTarget"></div>
+        <div class="messageBoardPostFooter">
+            <div class="commentHeader">@getCommentsHeaderText(post)</div>
+            @Html.Raw(createCommentsRoot(post))
+        </div>
+    </div>
+}

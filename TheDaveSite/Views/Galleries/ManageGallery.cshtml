@@ -1,0 +1,31 @@
+﻿@model DataAccess.Models.Gallery
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/GalleryViewer.js")
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/ManageGallery.js")
+
+@Styles.Render("~/Content/Pages/Galleries/ManageGallery.css")
+
+<h1>Manage Gallery: @Model.Title</h1>
+
+@Html.HiddenFor(x => x.Id, new { @id = "galleryId" })
+
+<div id="deleteClickerSource">
+    <div class="deleteClicker" draggable="true">
+        <div class="deleteClickerIcon"><img src="~/Images/close_small_32.png"></div>
+    </div>
+</div>
+
+<div id="tempUlHolder" style="display: none;">
+    @foreach (var image in Model.Images)
+    { 
+        <ul>
+            <li>
+                <img src="@Url.Action("GetDatabaseImageThumbnail", "DatabaseImage", new { id = image.ImageId })" draggable="true" class="viewerTarget" data-id="@image.ImageId" />
+            </li>
+        </ul>
+    }
+</div>
+
+<div id="galleryView">
+
+</div>

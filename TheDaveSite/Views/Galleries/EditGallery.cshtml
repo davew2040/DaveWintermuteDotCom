@@ -1,0 +1,25 @@
+﻿@model TheDaveSite.Models.GalleryAddEditModel
+
+<h2>Edit Gallery</h2>
+
+<div class="createNewCommentContainer">
+
+@using (Html.BeginForm("EditGallery", "Galleries"))
+{
+    @Html.HiddenFor(x => Model.GalleryId)
+
+    @Html.Label("Title:")<br />
+    @Html.TextBoxFor(x => Model.Title)<br />
+    <br />
+
+    @Html.Label("Description:")<br />
+    @Html.TextAreaFor(x => Model.Description, new { @style = "width: 500px; height: 400px;" })<br />
+    <br />
+
+    @Html.Label("Public:")<br />
+    @Html.CheckBoxFor(x => Model.IsPublic)<br />
+    <br />
+    <button type="submit">Submit</button>
+}
+
+</div>

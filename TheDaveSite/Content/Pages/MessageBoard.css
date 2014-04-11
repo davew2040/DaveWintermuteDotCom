@@ -1,0 +1,321 @@
+﻿.noBoardsNotice {
+    width: 300px;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+}
+
+.messageBoard {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.messageBoard .messageBoardName {
+    font-weight: bold;
+    font-size: 25px;
+}
+.messageBoard .messageBoardDescription {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: black;
+}
+
+.messageBoardHeader {
+    color: white;
+    border-radius: 8px;
+    border-color: #7c7c7c;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0px;
+    overflow:hidden;
+}
+
+.currentMessageBoardTitle {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #264979;
+    font-size: 36px;
+    padding: 5px 15px;
+}
+
+.currentMessageBoardDescription {
+    margin-left: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 15px;
+    padding: 10px 15px;
+    color: black;
+}
+
+.post {
+    margin-top:10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    border-color: #a9a9a9;
+    border-width: 1px;
+    border-style: solid;
+    overflow:hidden;
+    border-radius: 8px;
+}
+
+.messageBoardPostHeader {
+    width: 100%;
+    background-color: #efeba2;
+    height: 60px;
+    padding-left: 12px;
+    padding-top: 5px;
+    color: black;
+    position:relative;
+}
+
+.messageBoardPostFooter
+{
+    width: 100%;
+    font-size: 14px;
+    background-color: #264979;
+    color: white;
+}
+
+.messageBoardPostTitle {
+    width: 100%;
+    font-size: 24px;
+}
+
+.replyButton {
+    position:absolute;
+    background-color:#264979;
+    color:white;
+    border-style:solid;
+    border-width: 0px;
+    border-radius: 5px;
+    border-color: white;
+    width: 100px;
+    height: 18px;
+    font-size: 14px;
+    text-align: center;
+    right: 10px;
+    top: 10px;
+}
+
+.messageBoardPostInfo {
+    margin-left: 12px;
+}
+
+.messageBoardPostContent {
+    width: 100%;
+    padding: 20px;
+    color: #3c3c3c;
+}
+
+.shortCommentBody {
+    display:inline;
+}
+
+.shortCommentInfo {
+    position: absolute;
+    font-size: 12px;
+    right: 0px;
+}
+
+.longCommentBody {
+    display:none;
+    margin-bottom: 10px;
+}
+
+
+.subComment {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color:black;
+    position: relative;
+}
+
+.subCommentInfo {
+    text-align: right;
+    font-size:12px;
+}
+
+.subComment:nth-child(even) {
+    background: #c4d0fe;
+}
+
+.subComment:nth-child(odd) {
+    background: #b0c0ff;
+}
+
+.commentHeader {
+    font-size: 14px;
+    margin-left: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    display: block;
+}
+
+.commentBody {
+    font-size: 16px;
+}
+
+.newPostTitle {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 480px;
+    height: 35px;
+}
+
+.newPostTextArea {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 480px;
+    height: 200px;
+}
+
+.newPostContainer {
+    width: 500px;
+    height: 300px;
+    position:relative;
+    background-color: #d4c9ba;
+    border-radius: 10px;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    text-align:center;
+}
+
+.newCommentTextArea {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 480px;
+    height: 200px;
+}
+
+#createNewComment {
+    position:absolute;
+    bottom:10px;
+    width: 75px;
+    left: 50%; 
+    margin-left: -85px;
+    bottom: 10px;
+}
+
+#cancelNewComment {
+    position:absolute;
+    bottom:10px;
+    width: 75px;
+    left: 50%; 
+    margin-left: 10px;
+    bottom: 10px;
+}
+
+.createNewCommentContainer {
+    width: 500px;
+    height: 250px;
+    position:relative;
+    background-color: #d4c9ba;
+    border-radius: 10px;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    text-align:center;
+}
+
+.boardToolbar {
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+
+.boardToolbar .newPostButtonDiv {
+    position:absolute;
+    left: 15px;
+    top: 5px;
+    border-color: #7c7c7c;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1000px;
+    padding-top: 8px;
+    bottom: 0px;
+    width: 150px;
+    height: 35px;
+    text-align: center;
+    background-color:#ddc487;
+}
+
+.counter {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    display:block;
+    width: 330px;
+    height: 35px;
+    padding-top: 8px;
+}
+
+.counterPrev {
+    border-color: #7c7c7c;
+    border-style: solid;
+    border-width: 1px;
+    position: absolute;
+    top: 0px;
+    padding-top: 8px;
+    padding-right: 3px;
+    bottom: 0px;
+    width: 70px;
+    left: 1px;
+    text-align: right;
+    background-color:#ddc487;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.counterCurrent {
+    border-color: #7c7c7c;
+    border-style: solid;
+    border-width: 1px;
+    position: absolute;
+    padding-top: 8px;
+    left: 70px;
+    right: 50px;
+    font-size:13px;
+    top: 0px;
+    bottom: 0px;
+    text-align: center;
+    background-color:#efeba2;
+}
+
+.counterNext {
+    border-color: #7c7c7c;
+    border-style: solid;
+    border-width: 1px;
+    position: absolute;
+    padding-top: 8px;
+    width: 50px;
+    top: 0px;
+    bottom: 0px;
+    right: 1px;
+    text-align: left;
+    padding-left: 3px;
+    background-color:#ddc487;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.navBack {
+    text-align: right;
+    margin-bottom: 10px;
+    color:#01006b;
+}
+
+.navBack a {
+    color:#01006b;
+    font-size: 12px;
+}

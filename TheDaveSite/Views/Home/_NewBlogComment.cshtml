@@ -1,0 +1,23 @@
+﻿@model TheDaveSite.ViewModels.Home.NewBlogComment
+
+<div class="createNewBlogCommentContainer">
+@using (Html.BeginForm("AddNewBlogComment", "Home"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    @Html.HiddenFor(x => x.CommentId)
+    @Html.HiddenFor(x => x.PostId)
+    if (!WebSecurity.IsAuthenticated){
+        @: Your Name:<br />
+        @Html.TextBoxFor(x => x.AuthorName, new { @class = "newCommentAuthorName" })<br />
+    }
+    
+    @: Your comment: <br />
+    @Html.TextAreaFor(x => x.Content, new { @class = "newCommentTextArea"})
+
+    <div class="commenterButtonContainer">
+        <button id="createNewComment">Post</button> 
+        <button id="cancelNewComment">Cancel</button>
+    </div>
+}
+</div>

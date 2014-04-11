@@ -1,0 +1,223 @@
+﻿.resume {
+    font-family: Cambria;
+}
+
+.resume h1 {
+    font-size: 50px;
+}
+
+.resume .resumeHeader {
+    text-align: center;
+}
+
+.daveInfo {
+    text-align:right;
+    margin-bottom: 10px;
+}
+
+.daveName {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.daveEmail {
+    font-size:18px;
+}
+
+.daveLocation {
+    font-size:14px;
+}
+
+.davePhone {
+    font-size: 14px;
+}
+
+.resume h2 {
+    position:relative;
+    border-radius: 100px;
+    border-style: solid;
+    border-color: darkblue;
+    border-width: 0px;
+    padding-left: 15px;
+    padding-right: 0px;
+    padding-top: 1px;
+    padding-bottom: 3px;
+    background-color: #a4a393;
+    color: #ddddc8;
+    border-color: #808080;
+    font-family: Cambria;
+    font-weight: 100;
+}
+
+.headerMinimize {
+    position:absolute;
+    width: 100px;
+    top:10px;
+    right: 20px;
+    color: white;
+    display:inline;
+    margin-right: 0px;
+    margin-left: auto;
+    font-size: 10px;
+    text-align:right;
+}
+
+.resumeContentDiv {
+    padding-left: 35px;
+    padding-right: 35px;
+    height: auto;
+    overflow:hidden;
+}
+
+.companyName {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.companyLocation {
+    font-size: 18px;
+    margin-left: 30px;
+}
+
+.position {
+    margin-left: 15px;
+    margin-top: 8px;
+}
+
+.positionTitle {
+    font-weight: bold;
+    margin-top:20px;
+}
+
+.companyDates {
+    margin-left: 30px;
+    text-align:right;
+}
+
+.positionDescription ul {
+    padding-bottom: 0px;
+    padding-left: 0px;
+}
+
+.positionDescription li {
+    margin-left: 15px;
+    padding-bottom:10px;
+}
+
+.resumeContentDiv li {
+    list-style-type: none;
+}
+
+.education {
+    text-align: center;
+}
+
+.degree {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.school {
+    font-size: 14px;
+}
+
+.degreeExtra {
+    font-size: 14px;
+}
+
+.skillsTable {
+    margin: 0 auto;
+}
+
+.skillsTable td {
+    width: 250px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #808080;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.skillsTable .evenCell {
+    background-color: #fff2dc;
+}
+.skillsTable .oddCell {
+    background-color: #d7e9ff;
+}
+
+.clickableResumeHeader {
+    position:relative;
+    border-radius: 100px;
+    border-style: solid;
+    border-color: darkblue;
+    border-width: 0px;
+    padding-left: 15px;
+    padding-right: 0px;
+    background-color: #BCC4F5;
+    color: white;
+    border-color: #808080;
+    font-family: Cambria;
+    font-weight: 100;
+    height: 35px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    -webkit-transition: all 0.4s linear;  
+    -moz-transition: all 0.4s linear;  
+    -o-transition: all 0.4s linear;  
+    transition: all 0.4s linear; 
+}
+.clickableResumeHeader.headerInactive {
+    background-color: #313c83;
+    color: #878787;
+    height: 26px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.clickableResumeHeader .minimize {
+    width: 125px;
+    text-align: right;
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    right: 25px;
+    height: 14px;
+    top: 50%;
+    margin-top:-8px;
+
+    -webkit-transition: all 0.4s linear;  
+    -moz-transition: all 0.4s linear;  
+    -o-transition: all 0.4s linear;  
+    transition: all 0.4s linear; 
+}
+
+.clickableResumeHeader.headerInactive .minimize {
+    width: auto;
+    text-align: right;
+    color: rgba(255, 255, 255, 0);
+}
+
+
+.clickableResumeHeaderHolder {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    height: 26px;
+    margin-top: -13px;
+    font-size: 22px;
+
+    -webkit-transition: all 0.4s linear;  
+    -moz-transition: all 0.4s linear;  
+    -o-transition: all 0.4s linear;  
+    transition: all 0.4s linear; 
+}
+
+.clickableResumeHeader.headerInactive .clickableResumeHeaderHolder {
+    height: 20px;
+    margin-top: -10px;
+    font-size: 16px;
+}

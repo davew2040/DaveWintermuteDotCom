@@ -1,0 +1,92 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Welcome to DaveWintermute.com!</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/plugins")
+        @Scripts.Render("~/bundles/DaveScript")
+        @Scripts.Render("~/bundles/decorations_script")
+        @Scripts.Render("~/bundles/controls_script")
+
+        @Styles.Render("~/Content/themes/base/css")
+        @Styles.Render("~/bundles/decorations_styles")
+        @Styles.Render("~/bundles/controls_styles")
+
+        @RenderSection("scripts", required: false)
+
+        <script type="text/javascript">
+            GlobalScript.IsAuthenticated = @(WebSecurity.IsAuthenticated ? "true" : "false");
+        </script>
+    </head>
+    <body>
+        @Html.Hidden("pageUrl", TheDaveSite.Utils.MiscHelpers.GetAppUrl(Request, Url))
+
+        <div id="pageContainer">
+            <div id="globalSpinner" class="spinnerHolder">
+                <img src="~/Images/spinner.GIF" />
+            </div>
+            <div class="header">
+                <div id="header-content">
+                    <div>
+                        <div class="logo-div">
+                            <img class="imgExcited" src="~/Images/dave_excite.png"/>
+                            <img class="imgNormal" src="~/Images/dave_notexcite.png"/>
+                        </div>
+                        <div class="header-non-logo">
+                            <div id="loginStuff">
+                                @if (WebSecurity.IsAuthenticated)
+                                {
+                                    @Html.ActionLink("Logged in as: " + @WebSecurity.CurrentUserName + ".", "Manage", "Account")       
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", style="display:inline" })) {
+                                        @Html.AntiForgeryToken()
+                                        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                    }
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("[Log In]", "Login", "Account") 
+                                    @Html.ActionLink("[Register]", "Register", "Account") 
+                                }
+                            </div>
+                            <div id="headertext" class="nolinkindicator">
+                                <a href="@Url.Action("Blog", "Home")"><span id="name-span">Dave Wintermute</span> <span id="dotcom-span">(.com)</span></a>
+                            </div>
+                            <div id="menuContainer">
+                                <nav>
+                                    <ul id="menu">
+                                        <li style="display:inline"><div class="doorShutter navDiv">@Html.ActionLink("Blog", "Blog", "Home")</div></li>
+                                        <li style="display:inline"><div class="doorShutter navDiv">@Html.ActionLink("About", "About", "Home")</div></li>
+                                        <li style="display:inline"><div class="doorShutter navDiv">@Html.ActionLink("Messsage Board", "Index", "MessageBoard")</div></li>
+                                        <li style="display:inline"><div class="doorShutter navDiv">@Html.ActionLink("Galleries", "Galleries", "Galleries")</div></li>
+                                        <li style="display:inline"><div class="doorShutter navDiv"><a href="@Url.Action("Resume", "Home")">Resum&eacute;</a></div></li>
+                                        <li style="display:inline"><div class="doorShutter navDiv">@Html.ActionLink("Contact", "Contact", "Home")</div></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contentBody">
+                @RenderSection("featured", required: false)
+                <section class="content-wrapper main-content clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+            <div class="background"></div>
+            <div class="footer">
+                <div class="footer-content">
+                    <p>&copy; @DateTime.Now.Year - <a href="mailto:dwinterm@gmail.com">Dave Wintermute</a></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

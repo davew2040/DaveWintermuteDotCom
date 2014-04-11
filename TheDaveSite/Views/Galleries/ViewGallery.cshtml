@@ -1,0 +1,61 @@
+﻿
+@model TheDaveSite.ViewModels.Galleries.ViewGallery_ViewModel
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/GalleryViewer.js")
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/ViewGallery.js")
+
+@Styles.Render("~/Content/Pages/Galleries/ViewGallery.css")
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/GalleryImageViewer.js")
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/GalleryImageView.js")
+@Styles.Render("~/Content/Pages/Galleries/GalleryImageView.css")
+
+<script type="text/javascript">
+    var initialViewImageId = @Model.ViewImageId
+</script>
+
+<div class="navBack">
+    @Html.ActionLink("Back to Galleries List", "Galleries")
+</div>
+
+@Html.Hidden("galleryId", Model.Gallery.Id)
+
+<div class="gallerySummary">
+    <div class="bubbleBlock">
+        <div class="bubbleBlockHeader">
+            <div class="galleryTitle">@Model.Gallery.Title</div>
+            <div class="galleryInfo">
+                <div class="galleryOrigin">
+                    By <b>@Model.Gallery.Author.FirstName</b> on @(Model.Gallery.CreatedDate.ToString("f")). 
+                </div>
+                <div class="galleryDescription">
+                    @Model.Gallery.Description 
+                </div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="adminFunctions">
+                        @Html.ActionLink("[Edit]", "EditGallery", new { id = Model.Gallery.Id} )
+                        @Html.ActionLink("[Manage]", "ManageGallery", new { id = Model.Gallery.Id} )
+                        <a class="btnGalleryDelete" data-id="@Model.Gallery.Id">[Delete]</a>
+                        @Html.ActionLink("[Add Images]", "AddImagesToGallery", new { galleryId = Model.Gallery.Id} )
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="bubbleBlockContent">
+
+            <div id="galleryView">
+                @foreach (var image in Model.Gallery.Images)
+                {
+                    <ul>
+                        <li>
+                            <img src="@Url.Action("GetDatabaseImageThumbnail", "DatabaseImage", new { id = image.ImageId })" width="@image.Image.ImageThumbnail.ActualWidth" height="@image.Image.ImageThumbnail.ActualHeight" class="viewerTarget" data-id="@image.ImageId" />
+                        </li>
+                    </ul>
+                }
+
+                </div>
+        </div>
+    </div>
+</div>

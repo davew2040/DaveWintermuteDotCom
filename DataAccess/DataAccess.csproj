@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{38956B59-83E4-4F97-A0E9-212E9A15424E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccessPartials\DataAccess.cs" />
+    <Compile Include="DataAccessPartials\BannedList.cs" />
+    <Compile Include="IDataAccess.cs" />
+    <Compile Include="Migrations\201402200123028_InitialCreate.cs" />
+    <Compile Include="Migrations\201402200123028_InitialCreate.Designer.cs">
+      <DependentUpon>201402200123028_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201402252311194_ImageLinks.cs" />
+    <Compile Include="Migrations\201402252311194_ImageLinks.Designer.cs">
+      <DependentUpon>201402252311194_ImageLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404040134061_Gallery.cs" />
+    <Compile Include="Migrations\201404040134061_Gallery.Designer.cs">
+      <DependentUpon>201404040134061_Gallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404051742198_ImageUpdates.cs" />
+    <Compile Include="Migrations\201404051742198_ImageUpdates.Designer.cs">
+      <DependentUpon>201404051742198_ImageUpdates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404071806595_ResourceLikes.cs" />
+    <Compile Include="Migrations\201404071806595_ResourceLikes.Designer.cs">
+      <DependentUpon>201404071806595_ResourceLikes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404080235051_UnauthComments.cs" />
+    <Compile Include="Migrations\201404080235051_UnauthComments.Designer.cs">
+      <DependentUpon>201404080235051_UnauthComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404090308274_GalleryImageComments.cs" />
+    <Compile Include="Migrations\201404090308274_GalleryImageComments.Designer.cs">
+      <DependentUpon>201404090308274_GalleryImageComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404092050527_ImageOrdering.cs" />
+    <Compile Include="Migrations\201404092050527_ImageOrdering.Designer.cs">
+      <DependentUpon>201404092050527_ImageOrdering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404102044143_AnonymousNamedAuthors.cs" />
+    <Compile Include="Migrations\201404102044143_AnonymousNamedAuthors.Designer.cs">
+      <DependentUpon>201404102044143_AnonymousNamedAuthors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BannedEntry.cs" />
+    <Compile Include="Models\BlogModel.cs" />
+    <Compile Include="Models\Gallery.cs" />
+    <Compile Include="Models\ResourceLike.cs" />
+    <Compile Include="Models\StoredImage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\DatabaseUtils.cs" />
+    <Compile Include="Utils\ImageUtilities.cs" />
+    <Compile Include="Utils\MiscUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201402200123028_InitialCreate.resx">
+      <DependentUpon>201402200123028_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402252311194_ImageLinks.resx">
+      <DependentUpon>201402252311194_ImageLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404040134061_Gallery.resx">
+      <DependentUpon>201404040134061_Gallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404051742198_ImageUpdates.resx">
+      <DependentUpon>201404051742198_ImageUpdates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404071806595_ResourceLikes.resx">
+      <DependentUpon>201404071806595_ResourceLikes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404080235051_UnauthComments.resx">
+      <DependentUpon>201404080235051_UnauthComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404090308274_GalleryImageComments.resx">
+      <DependentUpon>201404090308274_GalleryImageComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404092050527_ImageOrdering.resx">
+      <DependentUpon>201404092050527_ImageOrdering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404102044143_AnonymousNamedAuthors.resx">
+      <DependentUpon>201404102044143_AnonymousNamedAuthors.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

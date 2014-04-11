@@ -1,0 +1,32 @@
+﻿@model int
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/Galleries/AddImagesToGallery.js")
+@Styles.Render("~/Content/Pages/Galleries/AddImagesToGallery.css")
+
+<h2>Upload Images to Gallery</h2>
+
+<div id="error_messages">
+    Errors: 
+    <div id="error_message_list">
+        <ul></ul>
+    </div>
+</div>
+
+<div id="invisible_image_holder">what</div>
+
+@using (Html.BeginForm("UploadImagesToGallery", "Galleries", FormMethod.Post, new { @id = "uploadForm", @enctype = "multipart/form-data" }))
+{
+   @Html.Hidden("galleryId", Model);
+    
+   <div id="dragdroptarget" class="dragdroptarget_passive">
+       <div id="dragdroptarget_actual"></div>
+       <div id="dragdroptarget_message">Drag images here to upload!</div>
+   </div>
+    
+   <div id="image_output"></div>
+    
+  <button type="button" id="btn_submit_images">Upload</button>
+}
+
+<br />
+ <div id="progress_updater">Waiting for upload...</div>

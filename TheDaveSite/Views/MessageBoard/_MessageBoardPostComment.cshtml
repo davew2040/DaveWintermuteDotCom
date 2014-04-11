@@ -1,0 +1,42 @@
+﻿@model TheDaveSite.ViewModels.MessageBoard.MessageBoardPostCommentViewModel
+
+@using TheDaveSite.Code;
+
+@functions{
+    private static string GetShortenedComment(string comment){
+        const int MAX_LENGTH = 50;
+        if (comment.Length < MAX_LENGTH)
+            return comment;
+        else
+            return comment.Substring(0, MAX_LENGTH) + "..."; 
+    }
+}
+
+
+<div class='subComment' style='padding-left:@((Model.Level+1)*15)px;' data-postId="@Model.Comment.ParentPostId" data-commentId="@Model.Comment.Id">
+    <div class='shortCommentBody'>
+        @if (Model.Comment.Author != null)
+        {
+            <div class='shortCommentInfo'>By <span style="font-weight: bold">@Model.Comment.Author.UserName</span> on @Model.Comment.PostDate.ToString("G").</div>
+        }
+        else
+        {
+            <div class='shortCommentInfo'>By Anonymous Commenter on @Model.Comment.PostDate.ToString("G").</div>
+        }
+        <div class="commentText">
+            @GetShortenedComment(Model.Comment.Content) <span><a class="commentReadMore">[read more / reply]</a></span>
+        </div>
+    </div>
+        
+    <div class='longCommentBody'>
+        @if (Model.Comment.Author != null)
+        {
+            <div class='subCommentInfo'>By <span style="font-weight: bold">@Model.Comment.Author.UserName</span> on @Model.Comment.PostDate.ToString("f").</div>
+        }
+        else
+        {
+            <div class='subCommentInfo'>By Anonymous Commenter on @Model.Comment.PostDate.ToString("f").</div>
+        }
+        @Html.Raw(CommentsHelpers.formatPost(Model.Comment.Content))</div>
+    <div class="commentResponseTarget"></div>
+</div>

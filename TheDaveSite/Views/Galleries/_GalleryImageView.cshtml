@@ -1,0 +1,21 @@
+﻿@model TheDaveSite.ViewModels.Galleries.GalleryImageView_ViewModel
+
+<input type="hidden" id="hiddenImageId" value="@Model.GalleryImage.Id" />
+
+<div class="galleryImagePanel">
+    <div class="galleryImagePanel_InnerPanel">
+        <div class="galleryImagePanel_InnerInnerPanel">
+            <div class="imagePanelClose"><img src="~/Images/close-button-black-and-white.png"></div>
+
+            <div class="navigationHolder">
+                <a id="imageViewerPrevious" class="navButton noTextSelect">Previous</a>
+                <a id="imageViewerFullSize" class="navButton noTextSelect" href="@Url.Action("GetFullsizeDatabaseImage", "DatabaseImage", new { id = Model.GalleryImage.ImageId })" target="_blank">Full Image</a>
+                <a id="imageViewerNext"class="navButton noTextSelect">Next</a>
+            </div>
+
+            <div class="galleryImagePanel_ContentPanel">
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model TheDaveSite.ViewModels.MessageBoard.MessageBoardIndexViewModel
+
+@Scripts.Render("~/Scripts/DaveScript/Pages/MessageBoard.js")
+@Styles.Render("~/Content/Pages/MessageBoard.css")
+
+<script type="text/javascript">
+    var CURRENT_PAGE = "MessageBoardIndex";
+</script>
+
+<div class="MessageBoards">
+    @if (Model.MessageBoards.Count() == 0)
+    {
+        <div class="noBoardsNotice">No message boards found!</div>
+    }
+    else
+    {
+        <div class="bubbleBlock">
+            <div class="bubbleBlockHeader">Message Boards</div>
+            <div class="bubbleBlockContent">
+                <div class="messageBoardList">
+                    @foreach (var board in Model.MessageBoards)
+                    {
+                        <a href="@Url.Action("MessageBoard", "MessageBoard", new { Id = board.Id })">
+                        <div class="messageBoard">
+                            <div class="messageBoardName">@board.Name</div>
+                            <div class="messageBoardDescription">@board.Description</div>
+                        </div>
+                       </a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
