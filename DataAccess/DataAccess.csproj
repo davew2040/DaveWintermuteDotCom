@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="DataAccessPartials\DataAccess.cs" />
     <Compile Include="DataAccessPartials\BannedList.cs" />
-    <Compile Include="IDataAccess.cs" />
+    <Compile Include="DataAccessPartials\IDataAccess.cs" />
     <Compile Include="Migrations\201402200123028_InitialCreate.cs" />
     <Compile Include="Migrations\201402200123028_InitialCreate.Designer.cs">
       <DependentUpon>201402200123028_InitialCreate.cs</DependentUpon>
@@ -92,12 +92,17 @@
     <Compile Include="Migrations\201404102044143_AnonymousNamedAuthors.Designer.cs">
       <DependentUpon>201404102044143_AnonymousNamedAuthors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404112014540_VisitorLog.cs" />
+    <Compile Include="Migrations\201404112014540_VisitorLog.Designer.cs">
+      <DependentUpon>201404112014540_VisitorLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BannedEntry.cs" />
     <Compile Include="Models\BlogModel.cs" />
     <Compile Include="Models\Gallery.cs" />
     <Compile Include="Models\ResourceLike.cs" />
     <Compile Include="Models\StoredImage.cs" />
+    <Compile Include="Models\VisitorLogEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DatabaseUtils.cs" />
     <Compile Include="Utils\ImageUtilities.cs" />
@@ -136,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404102044143_AnonymousNamedAuthors.resx">
       <DependentUpon>201404102044143_AnonymousNamedAuthors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404112014540_VisitorLog.resx">
+      <DependentUpon>201404112014540_VisitorLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -46,50 +46,73 @@
     }
 }
 
-    <div class="blogPost">
-        <div class="blogPostHeader">
-            <div class="blogPostTitle">@Model.Title </div>
-            <div class="replyButton postReplyButton" data-postId="@Model.Id" data-commentId="0">Reply</div>
-            <div class="blogPostInfo">By @Model.Author.FirstName, on <span class="postDate">@Model.PostDate.ToString("D")</span></div>
-        </div>
-        <div class="blogPostContent">
-            @if (User.IsInRole("Admin"))
-            {
-                @: <a href="@Url.Action("EditBlogPost", new { @postId = Model.Id })">[Edit]</a><br /><br />
-            }
-            @Html.Raw(CommentsHelpers.formatPost(Model.Content))
+<div class="blogPost">
+    <div class="blogPostOuter">
+        <div class="blogPostInner">
+            <div class="blogPostInnerInner">
+                <div class="blogPostHeader">
+                    <div class="blogPostTitle">@Model.Title </div>
+                    <div class="replyButton postReplyButton" data-postId="@Model.Id" data-commentId="0">Reply</div>
+                    <div class="blogPostInfo">By @Model.Author.FirstName, on <span class="postDate">@Model.PostDate.ToString("D")</span></div>
+                </div>
+                <div class="blogPostContent">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @: <a href="@Url.Action("EditBlogPost", new { @postId = Model.Id })">[Edit]</a><br /><br />
+                    }
+                    @Html.Raw(CommentsHelpers.formatPost(Model.Content))
 
-            <br />
-            @if (imageUrls.Any())
-            {
-                <div class="daveGallery daveImageLinkGallery" style="width:100%;height:150px;">
-                    <ul>
-                        @foreach (var img in imageUrls)
-                        {
-                            <li><img src="@img" /></li>
-                        }
-                    </ul>
-                </div>
-            }
-            @if (Model.LinkedGallery != null)
-            {
-                <div style="margin-top: 10px; margin-bottom: 0px; font-size: 12px;text-align: center;">
-                    @Html.ActionLink("[View Gallery]", "ViewGallery", "Galleries", new { id = Model.LinkedGalleryId }, null)
-                </div>
-                <div class="daveGallery daveRealGallery" style="width:100%;height:150px;">
-                    <ul style="display: none;">
-                        @foreach (var img in Model.LinkedGallery.Images)
-                        {
-                            <li><img src="@Url.Action("GetDatabaseImageThumbnail", "DatabaseImage", new { id = img.ImageId })" data-id="@img.ImageId"/></li>
-                        }
-                    </ul>
-                </div>
-            }
+                    <br />
+                    @if (imageUrls.Any())
+                    {
+                        <div class="daveGallery daveImageLinkGallery" style="width:100%;height:150px;">
+                            <ul>
+                                @foreach (var img in imageUrls)
+                                {
+                                    <li><img src="@img" /></li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    @if (Model.LinkedGallery != null)
+                    {
+                        <div style="margin-top: 10px; margin-bottom: 0px; font-size: 12px;text-align: center;">
+                            @Html.ActionLink("[View Gallery]", "ViewGallery", "Galleries", new { id = Model.LinkedGalleryId }, null)
+                        </div>
+                        <div class="daveGallery daveRealGallery" style="width:100%;height:150px;">
+                            <ul style="display: none;">
+                                @foreach (var img in Model.LinkedGallery.Images)
+                                {
+                                    <li><img src="@Url.Action("GetDatabaseImageThumbnail", "DatabaseImage", new { id = img.ImageId })" data-id="@img.ImageId"/></li>
+                                }
+                            </ul>
+                        </div>
+                    }
 
-        </div>
-        <div class="blogResponseTarget"></div>
-        <div class="blogPostFooter">
-            <div class="commentHeader">@Model.Comments.Count() comments.</div>
-            @Html.Raw(createCommentsRoot(Model))
+                </div>
+                <div class="blogResponseTarget"></div>
+                <div class="blogPostFooter">
+                    <div class="commentHeader">
+                        @{
+                            int commentCount = Model.Comments.Count;   
+                        }
+                        @if (commentCount == 0)
+                        {
+                            @: No comments.
+                        }
+                        else if (commentCount == 1)
+                        {
+                            @: 1 comment.
+                        }
+                        else
+                        {
+                            @: @commentCount comments.
+                        }
+
+                    </div>
+                    @Html.Raw(createCommentsRoot(Model))
+                </div>
+            </div>
         </div>
     </div>
+</div>

@@ -61,7 +61,7 @@ namespace TheDaveSite.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public JsonResult AddNewMessageBoardComment(int boardId, int postId, int? commentId, string content)
+        public JsonResult AddNewMessageBoardComment(int boardId, int postId, int? commentId, string content, string authorName)
         {
             if (commentId == 0)
             {
@@ -76,7 +76,7 @@ namespace TheDaveSite.Controllers
                         throw new Exception("Host is banned.");
                     }
 
-                    proxy.AddNewMessageBoardComment(boardId, postId, commentId, content);
+                    proxy.AddNewMessageBoardComment(boardId, postId, commentId, content, authorName);
 
                     MailHelper.SendSimpleAdminMail("New messageboard comment:",
                         String.Format("{0} added a new messageboard comment: {1}", WebSecurity.CurrentUserName,
@@ -118,7 +118,7 @@ namespace TheDaveSite.Controllers
                         throw new Exception("Host is banned.");
                     }
 
-                    proxy.AddNewMessageBoardPost(newPost.BoardId, newPost.Title, newPost.Content);
+                    proxy.AddNewMessageBoardPost(newPost.BoardId, newPost.Title, newPost.Content, newPost.AnonymousAuthorName);
                 }
                 catch (Exception e)
                 {

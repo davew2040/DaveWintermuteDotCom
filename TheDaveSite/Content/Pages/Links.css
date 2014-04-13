@@ -1,0 +1,73 @@
+﻿.LinksTitle {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.linkSection {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.linkSection:nth-child(n+2) {
+    margin-top: 20px;
+}
+
+.linkSectionHeader {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+    border-color: #575757;
+    background-image: linear-gradient(to bottom, #334382 0%, #242F5C 100%);
+    border-width: 0px;
+    border-style: solid;
+    border-bottom-width: 0px;
+    color: #f8f8f8;
+    background-color: #00067d;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.linkSectionHeaderTitle {
+    font-size: 24px;
+}
+
+.linkSectionHeaderDescription {
+    padding-left: 15px;
+    font-size: 14px;
+}
+
+.linkSectionContent {
+    padding: 15px;
+    border-color: #575757;
+    border-width: 1px;
+    border-style: solid;
+    border-top-width: 0px;
+    background-color: #fff1d8;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+
+.singleLink {
+}
+
+.singleLinkLink {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.singleLinkDescription {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.singleLink:nth-child(n+2) {
+    margin-top: 10px;
+}

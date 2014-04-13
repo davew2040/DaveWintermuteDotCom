@@ -5,7 +5,7 @@
 @using TheDaveSite.Code;
 
 @Scripts.Render("~/Scripts/DaveScript/Pages/Blog.js")
-@Styles.Render("~/Content/Pages/Blog.css")
+@Styles.Render("~/Content/Less/Pages/Blog/Blog.less")
 
 @Scripts.Render("~/Scripts/DaveScript/QuickGallery.js")
 @Styles.Render("~/Content/QuickGallery.css")
@@ -67,14 +67,18 @@
         <div class="adminToolbar">@Html.ActionLink("New Post", "AuthorNewBlogPost")</div>
     }
 
-    <div class="blogHeader">The Blog.</div>
+    <div class="blogHeader pageHeader">The Blog.</div>
 
     <div class="boardToolbar">
-        <div id="postCounter"></div>
+        <div class="postCounter"></div>
     </div>
 
     @foreach (var post in Model.RecentPosts.OrderByDescending(x => x.PostDate))
     {
         @Html.Partial("_BlogPost", post);
     }
+
+    <div class="boardToolbar">
+        <div class="postCounter"></div>
+    </div>
 </div>

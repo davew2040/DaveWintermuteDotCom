@@ -19,8 +19,7 @@ namespace TheDaveSite.Controllers
 {
     public class GalleriesController : Controller
     {
-        public const int POSTS_PER_PAGE = 10;
-
+        [HttpGet]
         public ActionResult Index()
         {
             MessageBoardIndexViewModel viewModel = new MessageBoardIndexViewModel();
@@ -32,6 +31,7 @@ namespace TheDaveSite.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public ActionResult Galleries()
         {
             using (var proxy = Proxies.DataAccessProxyInstance)

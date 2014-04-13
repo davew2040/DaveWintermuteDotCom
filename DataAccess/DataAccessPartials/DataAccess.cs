@@ -182,7 +182,7 @@ namespace DataAccess
         }
 
 
-        public void AddNewMessageBoardComment(int boardId, int postId, int? commentId, string content)
+        public void AddNewMessageBoardComment(int boardId, int postId, int? commentId, string content, string authorName)
         {
             using (var context = new DaveAppContext())
             {
@@ -198,7 +198,8 @@ namespace DataAccess
                     ParentPostId = postId,
                     ParentCommentId = commentId,
                     PostDate = DateTime.Now,
-                    Content = content
+                    Content = content,
+                    AnonymousAuthorName = authorName
                 };
 
                 var board = context.MessageBoards.Where(x => x.Id == boardId).FirstOrDefault();
@@ -210,7 +211,7 @@ namespace DataAccess
         }
 
 
-        public void AddNewMessageBoardPost(int boardId, string title, string content)
+        public void AddNewMessageBoardPost(int boardId, string title, string content, string authorName)
         {
             using (var context = new DaveAppContext())
             {
@@ -225,7 +226,8 @@ namespace DataAccess
                     AuthorId = authorId,
                     Title = title,
                     PostDate = DateTime.Now,
-                    Content = content
+                    Content = content,
+                    AnonymousAuthorName = authorName
                 };
 
                 var board = context.MessageBoards.Where(x => x.Id == boardId).FirstOrDefault();
@@ -650,6 +652,36 @@ namespace DataAccess
                 var gallery = galleries.Where(x => x.Images.Contains(searchImage)).FirstOrDefault();
 
                 return gallery.Id;
+            }
+        }
+
+        public void AddVisit(string ipAddress, string host)
+        {
+            using (var context = new DaveAppContext())
+            {
+                var existingEntry = context.VisitorLog.Where(x => x.IpAddress == ipAddress).FirstOrDefault();
+                if (existingEntry != null)
+                {
+                    return;
+                }
+
+                context.VisitorLog.Add(
+                    new VisitorLogEntry()
+                    {
+                        HostName = host,
+                        IpAddress = ipAddress,
+                        VisitTime = DateTime.Now
+                    });
+
+                context.SaveChanges();
+            }
+        }
+
+        public IEnumerable<VisitorLogEntry> GetVists()
+        {
+            using (var context = new DaveAppContext())
+            {
+                return context.VisitorLog.ToList();
             }
         }
     }

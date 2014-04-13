@@ -59,7 +59,7 @@
     height: 100%;
     background-color: red;
     border-style: solid;
-    border-width: 3px;
+    border-width: 0px;
     border-color: black;
 }
 
@@ -70,11 +70,12 @@
     margin-right: -40px;
     top: 0px;
     bottom: 0px;
+    border-width: 0px;
     border-style: solid;
     border-color: #313131;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
-    background-color: #313131;
+    background-color: #909090;
 }
 
 .daveGallery .forwardArrow {
@@ -84,23 +85,24 @@
     margin-left: -40px;
     top: 0px;
     bottom: 0px;
+    border-width: 0px;
     border-style: solid;
     border-color: #313131;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
-    background-color: #313131;
+    background-color: #909090;
 }
 
 .daveGallery .galleryContentHolder {
-    background-color: #707070;
+    background-color: #909090;
     position: absolute;
-    left: 40px;
-    right: 40px;
+    left: 39px;
+    right: 39px;
     top: 0px;
     bottom: 0px;
     overflow: hidden;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
     border-left-width: 0px;
     border-right-width: 0px;
     border-style: solid;
@@ -131,7 +133,7 @@
     overflow: hidden;
     position: absolute;
     border-radius: 15px;
-    background-color: #ADA49A;
+    background-color: #727fb0;
 }
 
 .daveGallery .galleryImage {

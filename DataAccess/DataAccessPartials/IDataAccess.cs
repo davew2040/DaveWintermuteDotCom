@@ -32,8 +32,8 @@ namespace DataAccess
         MessageBoard GetMessageBoard(int id);
         IEnumerable<MessageBoardPost> GetMessageBoardPosts(int id, int startingPost, int count);
         int GetMessageBoardPostCount(int id);
-        void AddNewMessageBoardPost(int boardId, string title, string content);
-        void AddNewMessageBoardComment(int boardId, int postId, int? commentId, string content);
+        void AddNewMessageBoardPost(int boardId, string title, string content, string authorName);
+        void AddNewMessageBoardComment(int boardId, int postId, int? commentId, string content, string authorName);
 
         #endregion 
 
@@ -74,6 +74,13 @@ namespace DataAccess
         BannedEntry GetBannedEntryById(int id);
 
         #endregion 
+
+        #region Visitor Log
+
+        void AddVisit(string ipAddress, string host);
+        IEnumerable<VisitorLogEntry> GetVists();
+
+        #endregion
     }
 
     public interface IUsersProxy : IDisposable

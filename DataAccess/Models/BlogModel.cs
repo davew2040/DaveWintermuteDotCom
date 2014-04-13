@@ -48,6 +48,7 @@ namespace DataAccess.Models
         public DbSet<StoredImage> StoredImages { get; set; }
         public DbSet<ResourceLike> ResourceLikes { get; set; }
         public DbSet<BannedEntry> BannedList { get; set; }
+        public DbSet<VisitorLogEntry> VisitorLog { get; set; }
     }
 
 #if DEBUG

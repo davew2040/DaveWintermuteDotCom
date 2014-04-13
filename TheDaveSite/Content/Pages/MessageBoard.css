@@ -52,7 +52,7 @@
 }
 
 .post {
-    margin-top:10px;
+    margin-top:0px;
     margin-left: 0px;
     margin-right: 0px;
     border-color: #a9a9a9;
@@ -60,6 +60,10 @@
     border-style: solid;
     overflow:hidden;
     border-radius: 8px;
+}
+
+.post:nth-child(n+2) {
+    margin-top: 15px;
 }
 
 .messageBoardPostHeader {
@@ -159,25 +163,32 @@
     font-size: 16px;
 }
 
+.newPostAuthor {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 450px;
+    height: 30px;
+}
+
 .newPostTitle {
     margin-left: 10px;
     margin-top: 10px;
     margin-right: 10px;
-    width: 480px;
-    height: 35px;
+    width: 450px;
+    height: 30px;
 }
 
 .newPostTextArea {
     margin-left: 10px;
     margin-top: 10px;
     margin-right: 10px;
-    width: 480px;
+    width: 450px;
     height: 200px;
 }
 
-.newPostContainer {
+.createNewMessageBoardPostContainer {
     width: 500px;
-    height: 300px;
     position:relative;
     background-color: #d4c9ba;
     border-radius: 10px;
@@ -185,14 +196,31 @@
     margin-right: auto;
     margin-top: 5px;
     margin-bottom: 15px;
-    text-align:center;
+    text-align:left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.createNewMessageBoardPostContainer input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.createNewMessageBoardPostContainer .commenterButtonContainer {
+    margin-top: 10px;
+    height: 30px;
+}
+.createNewMessageBoardPostContainer form {
+    margin-top: -5px;
 }
 
 .newCommentTextArea {
     margin-left: 10px;
     margin-top: 10px;
     margin-right: 10px;
-    width: 480px;
+    width: 450px;
     height: 200px;
 }
 
@@ -214,9 +242,8 @@
     bottom: 10px;
 }
 
-.createNewCommentContainer {
+.createNewMessageBoardCommentContainer {
     width: 500px;
-    height: 250px;
     position:relative;
     background-color: #d4c9ba;
     border-radius: 10px;
@@ -228,7 +255,7 @@
 }
 
 .boardToolbar {
-    margin-top: 10px;
+    margin-top: 30px;
     position: relative;
     width: 100%;
     height: 50px;
@@ -242,21 +269,21 @@
     border-style: solid;
     border-width: 1px;
     border-radius: 1000px;
-    padding-top: 8px;
+    padding-top: 4px;
     bottom: 0px;
     width: 150px;
-    height: 35px;
+    height: 26px;
     text-align: center;
     background-color:#ddc487;
 }
 
 .counter {
     position: absolute;
-    right: 10px;
+    right: 25px;
     top: 5px;
     display:block;
     width: 330px;
-    height: 35px;
+    height: 26px;
     padding-top: 8px;
 }
 
@@ -266,15 +293,17 @@
     border-width: 1px;
     position: absolute;
     top: 0px;
-    padding-top: 8px;
-    padding-right: 3px;
+    padding-top: 5px;
+    padding-right: 5px;
     bottom: 0px;
     width: 70px;
     left: 1px;
+    font-size: 13px;
     text-align: right;
-    background-color:#ddc487;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
+    border-right: 0px;
+    background-image: linear-gradient(to right, #FFFFFF 0%, #efeba2 100%);
 }
 
 .counterCurrent {
@@ -282,7 +311,7 @@
     border-style: solid;
     border-width: 1px;
     position: absolute;
-    padding-top: 8px;
+    padding-top: 5px;
     left: 70px;
     right: 50px;
     font-size:13px;
@@ -290,23 +319,27 @@
     bottom: 0px;
     text-align: center;
     background-color:#efeba2;
+    border-left: 0px;
+    border-right: 0px;
 }
 
 .counterNext {
     border-color: #7c7c7c;
     border-style: solid;
     border-width: 1px;
+    border-left: 0px;
     position: absolute;
-    padding-top: 8px;
+    padding-top: 5px;
     width: 50px;
     top: 0px;
     bottom: 0px;
     right: 1px;
     text-align: left;
-    padding-left: 3px;
-    background-color:#ddc487;
+    font-size: 13px;
+    padding-left: 7px;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
+    background-image: linear-gradient(to left, #FFFFFF 0%, #efeba2 100%);
 }
 
 .navBack {

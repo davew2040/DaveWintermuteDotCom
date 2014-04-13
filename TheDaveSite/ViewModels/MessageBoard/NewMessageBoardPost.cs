@@ -10,5 +10,6 @@ namespace TheDaveSite.ViewModels.MessageBoard
         public string Title { get; set; }
         public int BoardId { get; set; }
         public string Content { get; set; }
+        public string AnonymousAuthorName { get; set; }
     }
 }

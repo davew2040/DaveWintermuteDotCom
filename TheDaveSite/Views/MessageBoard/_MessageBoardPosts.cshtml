@@ -49,6 +49,10 @@
     }
 }
 
+@{
+    string anonymousAuthorName = string.Empty;
+}
+
 @foreach (var post in Model.CurrentPosts.OrderByDescending(x => x.PostDate))
 {
     <div class="post">
@@ -61,7 +65,15 @@
             }
             else
             {
-                <div class="messageBoardPostInfo">By Anonymous Poster, on <span class="postDate">@post.PostDate.ToString("D")</span></div>
+                if (!String.IsNullOrEmpty(post.AnonymousAuthorName))
+                {
+                    anonymousAuthorName = post.AnonymousAuthorName;
+                }
+                else
+                {
+                    anonymousAuthorName = "Anonymous Poster";
+                }
+                <div class="messageBoardPostInfo">By @anonymousAuthorName, on <span class="postDate">@post.PostDate.ToString("D")</span></div>
             }
         </div>
         <div class="messageBoardPostContent">@Html.Raw(TheDaveSite.Code.CommentsHelpers.formatPost(post.Content))</div>

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DataAccess.Models.VisitorLogEntry>
+
+@{
+    int counter = 1;
+}
+
+@foreach (var entry in Model)
+{
+    @: @(counter++): @entry.IpAddress (@entry.HostName) - @entry.VisitTime<br />
+}

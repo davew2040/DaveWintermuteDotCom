@@ -1,6 +1,6 @@
 ﻿@model TheDaveSite.ViewModels.MessageBoard.NewMessageBoardComment
 
-<div class="createNewCommentContainer">
+<div class="createNewMessageBoardPostContainer">
 @using (Html.BeginForm("AddNewMessageBoardPost", "Home"))
 {
     @Html.AntiForgeryToken()
@@ -8,9 +8,19 @@
     @Html.HiddenFor(x => x.BoardId)
     @Html.HiddenFor(x => x.CommentId)
     @Html.HiddenFor(x => x.PostId)
-    @Html.TextAreaFor(x => x.Content, new { @class = "newCommentTextArea"})
 
-    <button id="createNewComment">Post</button> 
-    <button id="cancelNewComment">Cancel</button>
+    if (!WebSecurity.IsAuthenticated)
+    {
+        @: Your name:<br />
+        @Html.TextBox("authorName", null, new { @class = "newPostAuthor"})<br />
+    }
+    
+    @: Your comment:<br />
+    @Html.TextAreaFor(x => x.Content, new { @class = "newCommentTextArea"})<br />
+
+    <div class="commenterButtonContainer">
+        <button id="createNewComment">Post</button> 
+        <button id="cancelNewComment">Cancel</button>
+    </div>
 }
 </div>

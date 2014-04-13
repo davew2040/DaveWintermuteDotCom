@@ -63,6 +63,13 @@ namespace TheDaveSite
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new LessBundle("~/bundles/less").Include(
+                "~/Content/Less/base.less",
+                "~/Content/Less/site.less"));
+
+            bundles.Add(new LessBundle("~/Content/Pages/Blog")
+                .Include("~/Content/Less/Pages/Blog/Blog.less"));
         }
     }
 }

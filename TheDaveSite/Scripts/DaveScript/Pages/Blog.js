@@ -163,7 +163,7 @@ var BlogScript = new function () {
                 itemsPerPage: _pageData.PostsPerPage,
                 totalPosts: _pageData.TotalPosts,
                 initialPage: _pageData.PageNumber,
-                targetDiv: $("#postCounter")[0],
+                targetDiv: $(".postCounter"),
                 previousHandler: self.previousPage,
                 nextHandler: self.nextPage
             });
@@ -364,8 +364,8 @@ var PageCounter = function (initializer) {
     var totalPosts = fullProperties.totalPosts;
     var currentPage = fullProperties.initialPage;
     var itemsPerPage = fullProperties.itemsPerPage;
-    var $targetDiv = $(fullProperties.targetDiv);
-    var $prevDiv, $currentDiv, $nextDiv;
+    var _$targetDivs = $(fullProperties.targetDiv);
+    var _$prevDiv, _$currentDiv, _$nextDiv;
     var externalNextHandler = null;
     var externalPrevHandler = null;
 
@@ -377,28 +377,39 @@ var PageCounter = function (initializer) {
         self.nextPage();
     }
 
+    function getNextDivs() {
+        return _$targetDivs.find(".counterNext");
+    }
+
+    function getPreviousDivs() {
+        return _$targetDivs.find(".counterPrev");
+    }
+
     function initialize(properties) {
-        if ($targetDiv.length === 0) {
+        if (_$targetDivs.length === 0) {
             throw "Must have valid input div.";
         }
 
-        if (!$targetDiv.hasClass("counter")) {
-            $targetDiv.addClass("counter");
+        for (var i = 0; i < _$targetDivs.length; i++) {
+            var $targetDiv = $(_$targetDivs[i]);
+            if (!$targetDiv.hasClass("counter")) {
+                $targetDiv.addClass("counter");
+            }
+
+            var $prevDiv = $("<a href='javascript:void(0)'><div class='counterPrev'>Previous</div></a>");
+            var $currentDiv = $("<div class='counterCurrent'>");
+            var $nextDiv = $("<a href='javascript:void(0)'><div class='counterNext'>Next</div></a>");
+
+            _$targetDivs.append($prevDiv);
+            _$targetDivs.append($currentDiv);
+            _$targetDivs.append($nextDiv);
+
+            externalNextHandler = properties.nextHandler;
+            externalPrevHandler = properties.previousHandler;
         }
 
-        $prevDiv = $("<a href='javascript:void(0)'><div class='counterPrev'>Previous</div></a>");
-        $currentDiv = $("<div class='counterCurrent'>");
-        $nextDiv = $("<a href='javascript:void(0)'><div class='counterNext'>Next</div></a>");
-
-        $targetDiv.append($prevDiv);
-        $targetDiv.append($currentDiv);
-        $targetDiv.append($nextDiv);
-
-        externalNextHandler = properties.nextHandler;
-        externalPrevHandler = properties.previousHandler;
-
-        $nextDiv.click(nextHandler);
-        $prevDiv.click(previousHandler);
+        getNextDivs().click(nextHandler);
+        getPreviousDivs().click(previousHandler);
 
         update();
     }
@@ -408,20 +419,20 @@ var PageCounter = function (initializer) {
         if (totalPosts > 0) {
             var message = "Showing page " + currentPage + " (posts " + getFirstItem() + "-" + getLastItem() + ")";
         }
-        $currentDiv.html(message);
+        $(".counterCurrent").html(message);
 
         if (self.isLastPage()) {
-            $nextDiv.addClass("disabled");
+            getNextDivs().addClass("disabled");
         }
         else {
-            $nextDiv.removeClass("disabled");
+            getNextDivs().removeClass("disabled");
         }
 
         if (self.isFirstPage()) {
-            $prevDiv.addClass("disabled");
+            getPreviousDivs().addClass("disabled");
         }
         else {
-            $prevDiv.removeClass("disabled");
+            getPreviousDivs().removeClass("disabled");
         }
     }
 

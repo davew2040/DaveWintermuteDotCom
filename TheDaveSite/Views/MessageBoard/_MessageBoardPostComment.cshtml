@@ -12,6 +12,10 @@
     }
 }
 
+@{
+    string anonymousAuthor = string.Empty;
+}
+
 
 <div class='subComment' style='padding-left:@((Model.Level+1)*15)px;' data-postId="@Model.Comment.ParentPostId" data-commentId="@Model.Comment.Id">
     <div class='shortCommentBody'>
@@ -21,7 +25,15 @@
         }
         else
         {
-            <div class='shortCommentInfo'>By Anonymous Commenter on @Model.Comment.PostDate.ToString("G").</div>
+            if (!string.IsNullOrEmpty(Model.Comment.AnonymousAuthorName)){
+                anonymousAuthor = Model.Comment.AnonymousAuthorName;
+            }
+            else
+            {
+                anonymousAuthor = "Anonymous Commenter";
+            }
+            <div cl
+            <div class='shortCommentInfo'>By @anonymousAuthor on @Model.Comment.PostDate.ToString("G").</div>
         }
         <div class="commentText">
             @GetShortenedComment(Model.Comment.Content) <span><a class="commentReadMore">[read more / reply]</a></span>
@@ -35,7 +47,14 @@
         }
         else
         {
-            <div class='subCommentInfo'>By Anonymous Commenter on @Model.Comment.PostDate.ToString("f").</div>
+            if (!string.IsNullOrEmpty(Model.Comment.AnonymousAuthorName)){
+                anonymousAuthor = Model.Comment.AnonymousAuthorName;
+            }
+            else
+            {
+                anonymousAuthor = "Anonymous Commenter";
+            }
+            <div class='subCommentInfo'>By @anonymousAuthor on @Model.Comment.PostDate.ToString("f").</div>
         }
         @Html.Raw(CommentsHelpers.formatPost(Model.Comment.Content))</div>
     <div class="commentResponseTarget"></div>

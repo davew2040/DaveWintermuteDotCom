@@ -1,10 +1,11 @@
-﻿ { 
+﻿@import "base.less";
+
+* { 
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
- /*
 html {
     margin: 0;
     padding: 0;
@@ -14,7 +15,7 @@ html {
 }
 
 body {
-    background-color: #E3E0CC;
+    background-color: @primaryColorOne;
     color: #333;
     width: 100%;
     height: auto;
@@ -33,52 +34,52 @@ body {
    position:relative;
    margin-left: auto;
    margin-right: auto;
-   width: 800px;
+   width: @site_width;
 }
 
 #contentBody {
     padding-top: 10px;
-    width: 710px;
+    width: @content_width;
     height: auto;
     margin-left: auto;
     margin-right: auto;
     display: block;
-    padding-bottom: 35px;
+    padding-bottom: @footer_height;
 }
 
 .background {
     position: absolute;
     left: 50%;
-    margin-left: -375px;
-    width: 750px;
+    margin-left:  -((@site_width/2.0) - @background_inset);
+    width: @site_width - 2 * @background_inset;
     top:0px;
     bottom:0px;
     overflow:hidden;
-    background-color:white;
+    background-color: @stripe_color;
     z-index: -1000;
 }
 
 .backgroundInner {
     position: absolute;
     left: 50%;
-    margin-left: -365px;
-    width: 730px;
+    margin-left: -(@site_width/2.0 - @background_inset - @stripe_width);
+    width: @site_width - 2 * @background_inset - 2 * @stripe_width;
     top:0px;
     bottom:0px;
     overflow:hidden;
-    background-color:#E3E0CC;
+    background-color: @primaryColorOne;
     z-index: -999;
 }
 
 .backgroundInnerInner {
     position: absolute;
     left: 50%;
-    margin-left: -355px;
-    width: 710px;
+    margin-left: -((@site_width/2.0) - @background_inset - (2 * @stripe_width));
+    width: @site_width - 2 * @background_inset - 4 * @stripe_width;
     top:0px;
     bottom:0px;
     overflow:hidden;
-    background-color:white;
+    background-color: @content_background;
     z-index: -998;
 }
 
@@ -104,19 +105,19 @@ a:hover {
 }
 
 .header {
-    width: 800px;
-    height: 150px;
+    width: @header_width;
+    height: @header_height;
     margin-left: auto;
     margin-right: auto;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: @header_radius;
+    border-bottom-right-radius: @header_radius;
     padding-top:5px;
     padding-bottom:0px;
     padding-left:20px;
     padding-right:20px;
     display:block;
 
-    background-image: linear-gradient(to bottom, #9399BF 0%, #BCC4F5 100%);
+    background-image: linear-gradient(to bottom, @headerGradientTop 0%, @headerGradientBottom 100%);
 }
 
 .header-non-logo {
@@ -172,7 +173,6 @@ a:hover {
 
 .header #header-content {
     position:relative;
-    width:750px;
     height:140px;
 }
 
@@ -256,12 +256,12 @@ nav, section {
     position: absolute;
     left: 50%;
     padding-top: 10px;
-    margin-left: -400px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
+    margin-left: -(@footer_width / 2.0);
+    border-top-left-radius: @header_radius;
+    border-top-right-radius: @header_radius;
     bottom: 0;
-    height: 35px;
-    width: 800px;
+    height: @footer_height;
+    width: @footer_width;
     overflow: hidden;
     background-image: linear-gradient(to top, #9399BF 0%, #BCC4F5 100%);
 }
@@ -422,55 +422,55 @@ nav, section {
 
 .headerLeftEdge {
     position: absolute;
-    width: 45px;
-    background-color: white;
+    width: @background_inset + @stripe_width;
+    background-color: @stripe_color;
     left: 50%;
-    margin-left: -410px;
-    height: 160px;
+    margin-left: -(@site_width/2.0);
+    height: @header_height + @stripe_width;
     z-index: -10;
-    border-bottom-left-radius: 35px;
+    border-bottom-left-radius: @stripe_radius;
 }
 
 .headerRightEdge {
     position: absolute;
-    width: 45px;
-    background-color: white;
+    width: @background_inset + @stripe_width;
+    background-color: @stripe_color;
     right: 50%;
-    margin-right: -410px;
-    height: 160px;
+    margin-right: -(@site_width/2.0);
+    height: @header_height + @stripe_width;
     z-index: -10;
-    border-bottom-right-radius: 35px;
+    border-bottom-right-radius: @stripe_radius;
 }
 
 .footerLeftEdge {
     position: absolute;
-    width: 45px;
-    background-color: white;
+    width: @background_inset + @stripe_width;
+    background-color: @stripe_color;
     bottom: 0px;
     left: 50%;
-    margin-left: -410px;
-    height: 45px;
+    margin-left: -(@site_width/2.0);
+    height: @footer_height + @stripe_width;
     z-index: -10;
-    border-top-left-radius: 35px;
+    border-top-left-radius: @stripe_radius;
 }
 
 .footerRightEdge {
     position: absolute;
-    width: 45px;
-    background-color: white;
+    width: @background_inset + @stripe_width;
+    background-color: @stripe_color;
     bottom: 0px;
     right: 50%;
-    margin-right: -410px;
-    height: 45px;
+    margin-right: -(@site_width/2.0);
+    height: @footer_height + @stripe_width;
     z-index: -10;
-    border-top-right-radius: 35px;
+    border-top-right-radius: @stripe_radius;
 }
 
 .pageHeader {
     font-size: 52px;
     font-weight: bold;
-    color: #585858;
+    color: @standardDarkFontColor;
     padding-left: 15px;
     padding-top: 3px;
     padding-bottom: 5px;
-}*/
+}

@@ -16,6 +16,8 @@ var LayoutScript = new function () {
                 var target = doorShutterTargets[i];
                 var testScript = new DoorShutter(target, doorShutterConfig);
             }
+
+            arrangeNavLinks();
         },
         initializeAnimations: function () {
             var logoAnimation = new LogoAnimation($(".logo-div"));
@@ -23,6 +25,33 @@ var LayoutScript = new function () {
             AnimationManager.registerAnimation(logoAnimation);
         }
     };
+
+    function arrangeNavLinks() {
+        var $container = $("#menuContainer");
+        var $navDivs = $container.find(".navDiv");
+        var containerWidth = $container.width();
+        var $offsetContainer = $container.find(".menuOffsetContainer");
+
+        var spacing = 10;
+        var navDivWidth = 0;
+        $navDivs.each(function (index, navDiv) {
+            var $navDiv = $(navDiv);
+
+            navDivWidth += $navDiv.width() + spacing;
+        });
+
+        var offset = 0;
+        $navDivs.each(function (index, navDiv) {
+            var $navDiv = $(navDiv);
+
+            $navDiv.css("position", "absolute");
+            $navDiv.css("left", offset);
+            offset += $navDiv.width() + spacing;
+        });
+
+        $offsetContainer.css("position", "relative");
+        $offsetContainer.css("margin-left", (containerWidth - navDivWidth) / 2.0);
+    }
 
     return self;
 }();

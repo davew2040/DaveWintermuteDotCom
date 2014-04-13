@@ -20,6 +20,11 @@ namespace TheDaveSite.Controllers
         {
             using (var proxy = Proxies.DataAccessProxyInstance)
             {
+                if (pageNumber == 1)
+                {
+                    proxy.AddVisit(Request.UserHostAddress, Request.UserHostName);
+                }
+
                 var numberOfPosts = proxy.GetNumberOfBlogPosts();
                 int maxPageNumber = (int)(Math.Ceiling((double)numberOfPosts / (double)BLOG_ENTRIES_PER_PAGE));
                 if (pageNumber > maxPageNumber)
@@ -39,6 +44,17 @@ namespace TheDaveSite.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult VisitorLog()
+        {
+            using (var proxy = Proxies.DataAccessProxyInstance)
+            {
+                var entries = proxy.GetVists();
+                return View("~/Views/Admin/VisitorLog.cshtml", entries);
+            }
+        }
+
         public ActionResult Resume()
         {
             return View();
@@ -50,6 +66,11 @@ namespace TheDaveSite.Controllers
         }
 
         public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Links()
         {
             return View();
         }
